@@ -1,15 +1,27 @@
 class Bob
   def self.hey(remark)
-    if remark.upcase == remark && remark.end_with?("?") && remark =~ /[A-Z]+/
+    if all_caps?(remark) && question?(remark)
       "Calm down, I know what I'm doing!"
-    elsif remark.upcase == remark && remark =~ /[A-Z]+/
+    elsif all_caps?(remark)
       "Whoa, chill out!"
-    elsif remark.strip.end_with?("?")
+    elsif question?(remark)
       "Sure."
-    elsif remark.strip == ""
+    elsif silence?(remark)
       "Fine. Be that way!"
     else
       "Whatever."
     end
+  end
+
+  def self.all_caps?(remark)
+    remark.upcase == remark && remark =~ /[A-Z]+/
+  end
+
+  def self.question?(remark)
+    remark.strip.end_with?("?")
+  end
+
+  def self.silence?(remark)
+    remark.strip == ""
   end
 end
