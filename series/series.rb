@@ -8,9 +8,13 @@ class Series
   end
 
   def slices(num)
-    raise ArgumentError if num == 0 || num.negative? || @string_of_digits.empty? || num > @string_of_digits.length
+    raise ArgumentError if invalid(num)
     @string_of_digits.each_cons(num) {|digit| @new_array << digit.join("")}
     @new_array
+  end
+
+  def invalid(num)
+    return true if num == 0 || num.negative? || @string_of_digits.empty? || num > @string_of_digits.length
   end
 end
 
